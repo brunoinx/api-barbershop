@@ -1,3 +1,4 @@
+import 'reflect-metadata'
 import express from 'express'
 import routes from './routes'
 import './database'
@@ -8,5 +9,5 @@ server.use(express.json())
 server.use(routes)
 
 server.listen('3333', () => {
-  console.log('servidor Rodando')
+  console.log('Server run on port 3333')
 })
