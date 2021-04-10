@@ -1,8 +1,6 @@
-/**
- * 1° step: receber os dados tipados da requisição pelo método execute;
- * 2º step: importar o model User como retorno do método;
- */
 import { getRepository } from 'typeorm'
+import { hash } from 'bcryptjs'
+
 import User from '../models/User'
 
 interface RequestData {
@@ -23,7 +21,13 @@ export default class CreateUserService {
       throw new Error('Email address already used...')
     }
 
-    const user = userRepository.create({ name, email, password })
+    const hashedPassword = await hash(password, 8)
+
+    const user = userRepository.create({
+      name,
+      email,
+      password: hashedPassword
+    })
 
     await userRepository.save(user)
 
