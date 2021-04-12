@@ -1,1 +1,5 @@
+# Depedences projects
 node_modules
+
+#
+src/config/auth.ts
